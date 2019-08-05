@@ -71,3 +71,5 @@ module.exports = class TokenGen {
     return this.cachedTokens[key];
   }
 }
+
+global.TokenGen = module.exports;

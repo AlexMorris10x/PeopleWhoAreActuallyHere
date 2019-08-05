@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>QR Generator</title>
+
+    <!--  -->
+    <style>
+     body { margin: 0; padding: 0; background-color: black; color: white; }
+    </style>
+  </head>
+
+  <body>
+    <!--  -->
+    <style>
+     #content {
+       position: fixed;
+       top: 0; left: 0; bottom: 0; right: 0;
+       display: none; /* swapped to 'flex' after JS loads */
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+     }
+
+     h1 { font-size: 1.9em; }
+
+     #qrcode { border: 1em solid red; }
+    </style>
+
+    <!--  -->
+    <div id="content">
+      <h1>People Who Are Actually Here</h1>
+      <div id="qrcode"></div>
+      <div id="url-display"></div>
+    </div>
+
+    <!--  -->
+    <script src="lib/qrcode.js"></script>
+    <script src="lib/TokenGen.js"></script>
+
+    <script type="text/javascript">
+     (function() {
+       const token_key = prompt('token key?');
+       const token_value = 'foo';
+       const tokenGen = new TokenGen();
+
+       tokenGen.start().then(() => {
+         const draw = () => {
+           const $qr = document.querySelector("#qrcode");
+
+           const token = tokenGen.generateToken(token_key);
+           const url = `http://peoplewhoareactuallyhere.com/t/${token}`;
+
+           document.querySelector('#url-display').innerHTML = `<a href="${url}">${token}</a>`;
+
+           $qr.innerHTML = '';
+           new QRCode($qr, { text: url, width: 512, height: 512 });
+         }
+
+         draw();
+         setInterval(draw, 10000); // @TODO: make token gen an event emitter, 'on time change', etc.
+       });
+
+       document.querySelector('#content').style.display = 'flex';
+
+     })();
+    </script>
+  </body>
+
+</html>

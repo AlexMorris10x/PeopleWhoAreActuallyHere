@@ -24,7 +24,8 @@ module.exports = class Server {
     this.app.use(bodyParser.json());
 
     configureRoutes(this.app,
-                    options.client.baseDir,
+                    { qrWeb: options.client.qrWeb.baseDir,
+                      mainWeb: options.client.qrWeb.baseDir },
                     this.tokenGen,
                     this.db,
                     { rsa_pem_publicKey: options.rsa_pem.public_key,
@@ -46,7 +47,9 @@ module.exports = class Server {
         const refreshTokens = () => {
           for (let key of this.tokenKeys) {
             const token = this.tokenGen.generateToken(key);
-            console.log(`generating token for key=${key}: ${token}`);
+            console.log(`token:`);
+            console.log(`  - key:   ${key}`);
+            console.log(`  - token: ${token}`);
           }
         };
 
@@ -65,12 +68,15 @@ module.exports = class Server {
   }
 }
 
-function configureRoutes(app, clientDir, tokenGen, db, keys) {
+function configureRoutes(app, baseDir, tokenGen, db, keys) {
   // Server routes (take priority over client routing).
   app.post('/auth', handlers.auth(db, tokenGen, "noisebridge", keys.rsa_pem_privateKey));
 
   app.get('/entries', handlers.entry.entries(db, keys.rsa_pem_publicKey));
   app.post('/entries', handlers.entry.add(db, keys.rsa_pem_publicKey));
+
+  console.log('...', baseDir.qrWeb);
+  app.use('/qr', express.static(baseDir.qrWeb));
 
   // Client routes are served in production.
   if (process.env.NODE_ENV === 'production') {
