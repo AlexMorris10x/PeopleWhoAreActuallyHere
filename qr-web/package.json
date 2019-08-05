@@ -1,0 +1,15 @@
+{
+  "name": "shared-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "TokenGen.js",
+  "scripts": {
+    "build": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.3.0"
+  }
+}
