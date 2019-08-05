@@ -44,6 +44,17 @@ exports.entries = (db, rsa_pem_publicKey) => async (req, res) => {
     console.error(id, error);
   }
 
+  // get content for entries
+  for (let entry of entries) {
+    if (typeof entry.contents === 'undefined') {
+      entry.contents = [];
+    }
+
+    const markdown = await db.content_markdown.getByEntryID(entry.id);
+
+    entry.contents.push(markdown);
+  }
+
   res.status(200).json({ entries });
 };
 

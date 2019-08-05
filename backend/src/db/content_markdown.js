@@ -21,3 +21,10 @@ exports.add = (sqlite3_db, entry_id, markdown) => new Promise((resolve, reject) 
     return error ? reject(error) : resolve(this);
   });
 });
+
+exports.getByEntryID = (sqlite3_db, entry_id) => new Promise((resolve, reject) =>
+  sqlite3_db.get(`SELECT * FROM content_markdown WHERE entry_id=?;`, [
+    entry_id
+  ], function(error, result) {
+    return error ? reject(error) : resolve(result);
+  }));
