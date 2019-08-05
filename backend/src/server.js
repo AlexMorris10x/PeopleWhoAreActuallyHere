@@ -25,7 +25,7 @@ module.exports = class Server {
 
     configureRoutes(this.app,
                     { qrWeb: options.client.qrWeb.baseDir,
-                      mainWeb: options.client.qrWeb.baseDir },
+                      mainWeb: options.client.mainWeb.baseDir },
                     this.tokenGen,
                     this.db,
                     { rsa_pem_publicKey: options.rsa_pem.public_key,
@@ -75,14 +75,13 @@ function configureRoutes(app, baseDir, tokenGen, db, keys) {
   app.get('/entries', handlers.entry.entries(db, keys.rsa_pem_publicKey));
   app.post('/entries', handlers.entry.add(db, keys.rsa_pem_publicKey));
 
-  console.log('...', baseDir.qrWeb);
   app.use('/qr', express.static(baseDir.qrWeb));
 
   // Client routes are served in production.
   if (process.env.NODE_ENV === 'production') {
     // Serve any static files
-    app.use(express.static(clientDir));
+    app.use(express.static(baseDir.mainWeb));
     // Handle React routing, return all requests to React app
-    app.get('*', (_, res) => res.sendFile(path.join(clientDir, 'index.html')));
+    app.get('*', (_, res) => res.sendFile(path.join(baseDir.mainWeb, 'index.html')));
   }
 }
