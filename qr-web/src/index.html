@@ -7,6 +7,8 @@
     <!--  -->
     <style>
      body { margin: 0; padding: 0; background-color: black; color: white; }
+     a { color: white; }
+     a:visited { color: white; }
     </style>
   </head>
 
@@ -29,9 +31,10 @@
 
     <!--  -->
     <div id="content">
-      <h1>People Who Are Actually Here</h1>
+      <h1>People Who Are Actually Here . com</h1>
+      <p style="width: 400px">Scan the QR code, and you will be granted 48/hr access to post on the forum. After 48 hours, you will no longer be able to post until you scan the QR code again.</p>
       <div id="qrcode"></div>
-      <div id="url-display"></div>
+      <div id="url-display" style="font-size: 1em"></div>
     </div>
 
     <!--  -->
@@ -41,6 +44,7 @@
     <script type="text/javascript">
      (function() {
        const token_key = prompt('token key?');
+
        const tokenGen = new TokenGen();
 
        tokenGen.start().then(() => {
@@ -50,10 +54,10 @@
            const token = tokenGen.generateToken(token_key);
            const url = `http://peoplewhoareactuallyhere.com/t/${token}`;
 
-           document.querySelector('#url-display').innerHTML = `<a href="${url}">${token}</a>`;
+           document.querySelector('#url-display').innerHTML = `<a href="${url}">${url}</a>`;
 
            $qr.innerHTML = '';
-           new QRCode($qr, { text: url, width: 512, height: 512 });
+           new QRCode($qr, { text: url, width: 400, height: 400 });
          }
 
          draw();
