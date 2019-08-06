@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dompurify": "^1.0.11",
+    "identicon.js": "^2.3.3",
+    "marked": "^0.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"

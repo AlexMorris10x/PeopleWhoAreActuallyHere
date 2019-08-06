@@ -22,8 +22,9 @@ module.exports = (db, tokenGen, tokenKey, rsa_pem_privateKey) => async (req, res
     return;
   }
 
+  let upsertResult;
   try {
-    await db.token.upsert(token);
+    upsertResult = await db.token.upsert(token);
   } catch(error) {
     const id = `${Date.now()}-${Math.round(Math.random() * 9999) + 1000}`;
     res.status(500).json({ id, error: "internal server error" });
@@ -38,5 +39,5 @@ module.exports = (db, tokenGen, tokenKey, rsa_pem_privateKey) => async (req, res
       error ? reject(error) : resolve(jwt)
     }));
 
-  res.status(200).json({ jwt });
+  res.status(200).json({ jwt, token_id: upsertResult.lastID });
 };

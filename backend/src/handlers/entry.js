@@ -50,9 +50,9 @@ exports.entries = (db, rsa_pem_publicKey) => async (req, res) => {
       entry.contents = [];
     }
 
-    const markdown = await db.content_markdown.getByEntryID(entry.id);
+    const markdowns = await db.content_markdown.allWithEntryID(entry.id);
 
-    entry.contents.push(markdown);
+    entry.contents = entry.contents.concat(markdowns);
   }
 
   res.status(200).json({ entries });
@@ -141,26 +141,16 @@ exports.add = (db, rsa_pem_publicKey) => async (req, res) => {
       const { lastID: contentID } = await db.content_markdown.add(
         entryID, content.markdown
       );
-
       contentIDs.push(contentID)
     }
 
-    res.status(200).json({});
-  } catch (error) {
-    const id = `${Date.now()}-${Math.round(Math.random() * 9999) + 1000}`;
-    res.status(500).json({ id, error: "internal server error" });
-    console.error(id, error);
-  }
-};
-      console.log(contentResult);
+    const entry = await db.entry.getByID(entryID);
+    entry.contents = []
 
-      const contentID = contentResult.lastID;
+    const markdowns = await db.content_markdown.allWithEntryID(entryID);
+    entry.contents = entry.contents.concat(markdowns);
 
-      contentIDs.push(contentID)
-    }
-
-
-    res.status(200).json({});
+    res.status(200).json(entry);
   } catch (error) {
     const id = `${Date.now()}-${Math.round(Math.random() * 9999) + 1000}`;
     res.status(500).json({ id, error: "internal server error" });
