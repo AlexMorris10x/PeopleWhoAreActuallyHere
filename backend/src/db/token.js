@@ -27,6 +27,6 @@ exports.upsert = async (sqlite3_db, token_value) => {
   const dbJWT = await exports.getByToken(sqlite3_db, token_value);
 
   if (typeof dbJWT === 'undefined') {
-    await exports.add(sqlite3_db, token_value);
+    return await exports.add(sqlite3_db, token_value);
   }
 }

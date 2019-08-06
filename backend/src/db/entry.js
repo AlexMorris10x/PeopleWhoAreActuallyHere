@@ -8,6 +8,13 @@ exports.create = (sqlite3_db) => new Promise((resolve, reject) =>
      return error ? reject(error) : resolve(this);
    }));
 
+exports.getByID = (sqlite3_db, entry_id) => new Promise((resolve, reject) =>
+  sqlite3_db.get(`SELECT * FROM entry WHERE id=?;`, [
+    entry_id
+  ], function(error, result) {
+    return error ? reject(error) : resolve(result);
+  }));
+
 exports.add = (sqlite3_db, token_id) => new Promise((resolve, reject) => {
   const now_utc = new Date().getTime();
 
@@ -15,7 +22,7 @@ exports.add = (sqlite3_db, token_id) => new Promise((resolve, reject) => {
 
   const sql = `INSERT INTO entry (
     token_id, created_utc
-  ) VALUES (?, ?);`;
+  ) VALUES (?, ?)`;
 
   sqlite3_db.run(sql, params, function(error) {
     return error ? reject(error) : resolve(this);
@@ -23,6 +30,6 @@ exports.add = (sqlite3_db, token_id) => new Promise((resolve, reject) => {
 });
 
 exports.getLatest100 = (sqlite3_db) => new Promise((resolve, reject) =>
-  sqlite3_db.all('SELECT * FROM entry LIMIT 100', [], function(error, rows) {
+  sqlite3_db.all('SELECT * FROM entry ORDER BY created_utc DESC LIMIT 100', [], function(error, rows) {
     return error ? reject(error) : resolve(rows)
   }));

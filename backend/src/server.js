@@ -19,17 +19,20 @@ module.exports = class Server {
     this.tokenRefreshInterval;
 
     this.app = express();
-    this.app.use(cors(options.cors));
+    this.app.options('*', cors())
+    this.app.use(cors());
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
 
     configureRoutes(this.app,
                     { qrWeb: options.client.qrWeb.baseDir,
-                      mainWeb: options.client.qrWeb.baseDir },
+                      mainWeb: options.client.mainWeb.baseDir },
                     this.tokenGen,
                     this.db,
                     { rsa_pem_publicKey: options.rsa_pem.public_key,
-                      rsa_pem_privateKey: options.rsa_pem.private_key });
+                      rsa_pem_privateKey: options.rsa_pem.private_key },
+                    options.token.keys[0]
+    );
   }
 
   async start() {
@@ -68,21 +71,21 @@ module.exports = class Server {
   }
 }
 
-function configureRoutes(app, baseDir, tokenGen, db, keys) {
+function configureRoutes(app, baseDir, tokenGen, db, keys, whatever_pwd_key) {
   // Server routes (take priority over client routing).
-  app.post('/auth', handlers.auth(db, tokenGen, "noisebridge", keys.rsa_pem_privateKey));
+  app.post('/auth', handlers.auth(
+    db, tokenGen, whatever_pwd_key, keys.rsa_pem_privateKey));
 
   app.get('/entries', handlers.entry.entries(db, keys.rsa_pem_publicKey));
   app.post('/entries', handlers.entry.add(db, keys.rsa_pem_publicKey));
 
-  console.log('...', baseDir.qrWeb);
   app.use('/qr', express.static(baseDir.qrWeb));
 
   // Client routes are served in production.
   if (process.env.NODE_ENV === 'production') {
     // Serve any static files
-    app.use(express.static(clientDir));
+    app.use(express.static(baseDir.mainWeb));
     // Handle React routing, return all requests to React app
-    app.get('*', (_, res) => res.sendFile(path.join(clientDir, 'index.html')));
+    app.get('*', (_, res) => res.sendFile(path.join(baseDir.mainWeb, 'index.html')));
   }
 }

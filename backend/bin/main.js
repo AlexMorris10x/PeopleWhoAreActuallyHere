@@ -15,11 +15,6 @@ const config = {
   token: {
     keys: fs.readFileSync(process.env.TOKEN_KEYS, 'utf8').trim().split(',')
   },
-  cors: {
-    origin: true,
-    credentials: true,
-    allowedHeaders: ['Content-Type']
-  },
   client: {
     qrWeb: {
       baseDir: path.join(__dirname, '..', '..', 'qr-web', 'build')
