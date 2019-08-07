@@ -48,7 +48,7 @@ const getIdenticonSrc = (hash, size) => {
   };
 
   const data = new Identicon(hash, options).toString();
-  return `data:image/svg+xml;base64,${data}`
+  return `data:image/png;base64,${data}`
 }
 
 // - - -
