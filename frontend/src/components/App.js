@@ -69,7 +69,7 @@ class App extends React.Component {
     }
 
     await this.getEntries(jwt);
-    setInterval(() => this.getEntries(jwt), 60000);
+    // setInterval(() => this.getEntries(jwt), 60000);
   }
 
   async addEntry(e) {
