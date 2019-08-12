@@ -35,7 +35,7 @@ export default class Entry extends React.Component {
     const identiconSrc = getIdenticonSrc(tokenIdHash, 64);
 
     return (
-      <div className="entry" key={entry.id}>
+      <div className="entry">
         <header>
           <span className="entry-id">#{entry.id}</span>
           <span className="created-utc">{
