@@ -79,6 +79,11 @@ class App extends React.Component {
     e.preventDefault();
 
     const markdown = this.textareaInput.current.value;
+
+    if (markdown === '') {
+      return; // exit early don't submit empty forms!
+    }
+
     const result = await api.addEntry(this.state.jwt, markdown);
 
     this.setState({
