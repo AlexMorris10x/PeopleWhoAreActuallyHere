@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Entry from './Entry';
+import Header from './Header';
 
 const tokenFromURL = () => {
   const tokenMatch = window.location.pathname.match(/^\/t\/(\w+)$/);
@@ -35,9 +36,10 @@ class App extends React.Component {
       jwt: '',
       is_authenticated: false,
       errors: [],
-      entries: [],
-      entryText: ''
+      entries: []
     };
+
+    this.textareaInput = React.createRef();
   }
 
   async getEntries(jwt) {
@@ -76,9 +78,10 @@ class App extends React.Component {
     const { api } = this.props;
     e.preventDefault();
 
-    const result = await api.addEntry(this.state.jwt, this.state.entryText);
+    const markdown = this.textareaInput.current.value;
+    const result = await api.addEntry(this.state.jwt, markdown);
+
     this.setState({
-      entryText: '',
       entries: [ result, ...this.state.entries ]
     });
   }
@@ -91,10 +94,10 @@ class App extends React.Component {
       )}
     </div>) : (
       <div>
+        <Header />
         <form onSubmit={this.addEntry.bind(this)}>
           <textarea name="markdown"
-                    value={this.state.entryText}
-                    onChange={(e) => this.setState({entryText: e.target.value})}
+                    ref={this.textareaInput}
                     placeholder="enter markdown here..." />
           <input type="submit" value="PWAAH" />
         </form>
