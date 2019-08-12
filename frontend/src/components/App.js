@@ -86,6 +86,8 @@ class App extends React.Component {
 
     const result = await api.addEntry(this.state.jwt, markdown);
 
+    this.textareaInput.current.value = '';
+
     this.setState({
       entries: [ result, ...this.state.entries ]
     });
