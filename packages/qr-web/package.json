@@ -1,14 +1,16 @@
 {
-  "name": "shared-js",
-  "version": "1.0.0",
-  "description": "",
-  "main": "TokenGen.js",
+  "name": "qr-web",
+  "version": "0.0.0",
+  "description": "A static site for displaying PWAAH's QR code",
   "scripts": {
-    "build": "echo \"Error: no test specified\" && exit 1"
+    "build": "./bin/build.sh"
   },
   "keywords": [],
   "author": "",
   "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "js-token-gen": "0.0.0"
+  },
   "devDependencies": {
     "browserify": "^16.3.0"
   }
