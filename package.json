@@ -3,5 +3,6 @@
   "private": true,
   "devDependencies": {
     "lerna": "^3.16.4"
-  }
+  },
+  "license": "AGPL-3.0-or-later"
 }

@@ -16,6 +16,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "license": "AGPL-3.0-or-later",
   "eslintConfig": {
     "extends": "react-app"
   },
