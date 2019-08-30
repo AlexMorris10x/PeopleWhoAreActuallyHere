@@ -2,11 +2,11 @@
   "name": "shared-js",
   "version": "1.0.0",
   "description": "",
-  "main": "TokenGen.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "AGPL-3.0-or-later",
+  "license": "AGPL-3.0-or-later"
 }
