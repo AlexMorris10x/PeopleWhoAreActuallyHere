@@ -21,7 +21,7 @@ mkdir -p "${QR_BUILD_DIR}"
 
 (
     cd "${QR_BUILD_DIR}"
-    cp -r $SCRIPT_PATH/../src/* .
+    cp -r $SCRIPT_PATH/../src/index.html .
 
-    browserify $SCRIPT_PATH/../src/index.js > ./lib/index.js
+    browserify $SCRIPT_PATH/../src/index.js > ./index.js
 )

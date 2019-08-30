@@ -10,8 +10,6 @@
  */
 var QRCode;
 
-module.exports = QRCode;
-
 (function () {
   //---------------------------------------------------------------------
   // QRCode for JavaScript
@@ -614,3 +612,5 @@ module.exports = QRCode;
    */
   QRCode.CorrectLevel = QRErrorCorrectLevel;
 })();
+
+module.exports = QRCode;
