@@ -2,11 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
+const TokenGen = require('js-token-gen');
 const handlers = require('./handlers');
 
 const fs = require('fs');
-
-const TokenGen = require('../../shared-js/TokenGen');
 
 module.exports = class Server {
   constructor(db, options) {
