@@ -1,6 +1,11 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "init": "npx lerna bootstrap",
+    "start": "npm run init; npx lerna run --parallel start",
+    "build": "npm run init; npx lerna run --parallel build"
+  },
   "devDependencies": {
     "lerna": "^3.16.4"
   },
