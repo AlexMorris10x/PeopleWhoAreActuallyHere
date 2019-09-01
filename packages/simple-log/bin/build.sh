@@ -21,9 +21,9 @@ PATH=$SCRIPT_PATH/../node_modules/.bin:$PATH
     if [ -z "build" ]; then echo "react-sc" >&2; exit 1; fi
 )
 
-FRONTEND_BUILD_DIR="${BUILD_DIR}/react-ui"
-rm -rf "${FRONTEND_BUILD_DIR}"
-mkdir -p "${FRONTEND_BUILD_DIR}"
+SIMPLE_LOG_BUILD_DIR="${BUILD_DIR}/simple-log"
+rm -rf "${SIMPLE_LOG_BUILD_DIR}"
+mkdir -p "${SIMPLE_LOG_BUILD_DIR}"
 
-mv $SCRIPT_PATH/../build/* "${FRONTEND_BUILD_DIR}"
+mv $SCRIPT_PATH/../build/* "${SIMPLE_LOG_BUILD_DIR}"
 rm -r $SCRIPT_PATH/../build
