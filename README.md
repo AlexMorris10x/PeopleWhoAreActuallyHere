@@ -5,7 +5,11 @@
 Dependencies
 --------------------
 
- * Node.js v10
+ * [Node.js][nodejs]
+ * [Dash][dash]
+
+[node]: https://en.wikipedia.org/wiki/Nodejs
+[dash]: https://en.wikipedia.org/wiki/Almquist_shell
 
 Development
 --------------------
