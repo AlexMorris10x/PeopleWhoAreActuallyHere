@@ -17,7 +17,7 @@ const config = {
   },
   client: {
     qrWeb: {
-      baseDir: path.join(__dirname, '..', '..', 'qr-web', 'build')
+      baseDir: path.join(__dirname, '..', '..', 'qr-web', 'build', 'qr-web')
     },
     mainWeb: {
       baseDir: path.join(__dirname, '..', '..', 'frontend', 'build')
