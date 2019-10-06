@@ -2,10 +2,10 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "init": "npx lerna bootstrap",
-    "start": "npm run init; npx lerna run --parallel start",
-    "build": "npm run init; npx lerna run --parallel build",
-    "prod": "NODE_ENV=production node ./$BUILD_DIR/web-api/bin/main.js"
+    "bootstrap": "npx lerna bootstrap",
+    "start": "npx lerna run --parallel start",
+    "build": "npx lerna run --parallel build",
+    "prod": "NODE_ENV=production node $BUILD_DIR/web-api/bin/main.js"
   },
   "devDependencies": {
     "lerna": "^3.16.4"
