@@ -4,6 +4,7 @@
   "description": "",
   "main": "./src/TokenGen.js",
   "scripts": {
+    "build": "./bin/build.sh"
   },
   "keywords": [],
   "author": "",
