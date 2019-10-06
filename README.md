@@ -41,28 +41,21 @@ echo "some-secret-here" > keys/token.keys
 npm run bootstrap
 ```
 
-### 4a. Development
+### 4. Start
+
+#### Development
 
 ```
 source config.sh
 npm start
 ```
 
-### 4b. Production
+#### Production
 
 ```
 source config.sh
 npm run build
 npm run prod
-```
-
-Production
---------------------
-
-```
-npm init
-BUILD_DIR=<build_directory> npm run build
-BUILD_DIR=<build_directory> npm run prod
 ```
 
 License
