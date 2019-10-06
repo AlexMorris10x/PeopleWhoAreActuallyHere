@@ -25,7 +25,7 @@ module.exports = class Server {
 
     configureRoutes(this.app,
                     { qrWeb: options.client.qrWeb.baseDir,
-                      mainWeb: options.client.mainWeb.baseDir },
+                      mainWeb: options.client.simpleLog.baseDir },
                     this.tokenGen,
                     this.db,
                     { rsa_pem_publicKey: options.rsa_pem.public_key,
