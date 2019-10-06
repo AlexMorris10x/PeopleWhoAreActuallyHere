@@ -33,7 +33,7 @@ what lives behind the authentication.
 Dependencies
 --------------------------------------------------
 
- * [Node.js][nodejs]
+ * [Node.js][node]
  * [Dash][dash]
 
 [node]: https://en.wikipedia.org/wiki/Nodejs
