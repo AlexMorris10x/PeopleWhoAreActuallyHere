@@ -2,6 +2,34 @@
 
 > People who are actually here
 
+```
+> What is this project?
+
+It's a demo of the idea: "how can we
+ensure that only people at a location
+can participate in an online community?"
+
+The name "people who are actually
+here (PWAAH)" is a joke, but one
+that drives that point home...
+
+> What does it do?
+
+It ensures that only folks who have been to
+a particular location can gain access to
+something. Currently that means some hacked
+together frontend chat-thing, but it can be
+anything really.
+
+> How does one use it?
+
+Find a PWAAH QR code (/link), scan it, and
+authenticate with whatever PWAAH server it's
+associated with. The server owner can determine
+what lives behind the authentication.
+
+```
+
 Dependencies
 --------------------------------------------------
 
