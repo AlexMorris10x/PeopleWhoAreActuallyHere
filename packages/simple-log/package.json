@@ -1,6 +1,6 @@
 {
-  "name": "peoplewhoareactuallyhere",
-  "version": "0.1.0",
+  "name": "simple-log",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
     "dompurify": "^1.0.11",
@@ -11,11 +11,12 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "BROWSER=none react-scripts start",
+    "build": "./bin/build.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "license": "AGPL-3.0-or-later",
   "eslintConfig": {
     "extends": "react-app"
   },

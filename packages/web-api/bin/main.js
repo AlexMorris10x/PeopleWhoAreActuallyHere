@@ -4,7 +4,8 @@ const path = require('path');
 const fs = require('fs');
 const Server = require('../src/server');
 const Database = require('../src/db');
-const cwd = process.cwd(); // store all files we create in the cwd.
+
+const DATA_DIRECTORY = process.cwd();
 
 const config = {
   port: process.env.PORT || 5000,
@@ -17,14 +18,14 @@ const config = {
   },
   client: {
     qrWeb: {
-      baseDir: path.join(__dirname, '..', '..', 'qr-web', 'build')
+      baseDir: path.join(process.env.BUILD_DIR, 'qr-web')
     },
-    mainWeb: {
-      baseDir: path.join(__dirname, '..', '..', 'frontend', 'build')
+    simpleLog: {
+      baseDir: path.join(process.env.BUILD_DIR, 'simple-log')
     }
   },
   sqlite3: {
-    filename: path.join(cwd, 'db.sqlite3')
+    filename: path.join(DATA_DIRECTORY, 'db.sqlite3')
   }
 };
 

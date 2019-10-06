@@ -2,11 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
+const TokenGen = require('js-token-gen');
 const handlers = require('./handlers');
 
 const fs = require('fs');
-
-const TokenGen = require('../../shared-js/TokenGen');
 
 module.exports = class Server {
   constructor(db, options) {
@@ -26,7 +25,7 @@ module.exports = class Server {
 
     configureRoutes(this.app,
                     { qrWeb: options.client.qrWeb.baseDir,
-                      mainWeb: options.client.mainWeb.baseDir },
+                      mainWeb: options.client.simpleLog.baseDir },
                     this.tokenGen,
                     this.db,
                     { rsa_pem_publicKey: options.rsa_pem.public_key,

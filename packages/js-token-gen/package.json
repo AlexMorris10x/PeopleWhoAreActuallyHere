@@ -1,0 +1,12 @@
+{
+  "name": "js-token-gen",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./src/TokenGen.js",
+  "scripts": {
+    "build": "./bin/build.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "AGPL-3.0-or-later"
+}

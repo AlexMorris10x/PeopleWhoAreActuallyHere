@@ -1,14 +1,17 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
+  "name": "web-api",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "PORT=5000 PRIVATE_RSA_PEM=keys/private.pem PUBLIC_RSA_PEM=keys/public.pem TOKEN_KEYS=keys/token.keys nodemon bin/main.js"
+    "start": "PORT=5000 nodemon bin/main.js",
+    "build": "./bin/build.sh"
   },
+  "license": "AGPL-3.0-or-later",
   "keywords": [],
   "author": "",
   "dependencies": {
+    "js-token-gen": "0.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
