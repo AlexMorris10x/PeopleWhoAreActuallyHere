@@ -71,7 +71,10 @@ npm run bootstrap
 ```
 
 ### 4. Start
-
+if on mac os
+```
+brew install coreutils 
+```
 #### Development
 
 ```
