@@ -66,6 +66,7 @@ echo "some-secret-here" > keys/token.keys
 ### 3. Install dependencies
 
 ```
+npm install
 npm run bootstrap
 ```
 
