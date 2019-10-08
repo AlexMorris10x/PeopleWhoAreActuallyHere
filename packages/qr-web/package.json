@@ -4,7 +4,7 @@
   "description": "A static site for displaying PWAAH's QR code",
   "scripts": {
     "build": "./bin/build.sh",
-    "start": "mkdir -p ./build; BUILD_DIR=./build ./bin/build.sh"
+    "start": "./bin/build.sh"
   },
   "keywords": [],
   "author": "",
